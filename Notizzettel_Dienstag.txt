@@ -1,0 +1,154 @@
+==================================================
+
+Guten Morgen
+
+C++ Einführung
+--------------
+
+Peter Loos
+
+peter.loos@gmx.de
+
+==================================================
+
+2 Gruppen
+
+== Entwickler
+== Tester
+
+== C++ Einführung
+== C++-API ==>  C++ SW Verwendung 
+
+Zugang zu Modem
+
+== C-API
+
+==================================================
+
+Visual Studio:
+
+Beispiel: Allgemein gültig
+
+==================================================
+
+A) Einführung 
+
+B) Quellcode des Qualcomm APIs lesen und verstehen und erklären
+
+   Factory // Referenzen // Schnittstelle
+
+   Aufräumen eines Callback // Scope des Funktionen
+
+   Design Pattern:  Factory // Interfaces ...
+
+C) Was MUSS DRIN SEIN:
+
+   Darf auch später kommen ............................
+
+
+Hausaufgabe:
+
+peter.loos@gmx.de
+
+3 bis 5 Links: Dateien
+
+
+==================================================
+
+2 Tools:
+
+== Visual Studio
+== Github.com
+
+https://github.com/pelocpp
+
+https://github.com/pelocpp/cpp_introduction
+
+==================================================
+
+Visual Studio Community 2022
+
+===>  Workload "Desktop Development with C++"
+
+
+Beispiele:
+
+https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/blob/LE.UM.7.4.1.r1-17700-sa525m-tele/apps/samples/phone/make_call_app/MakeCall.cpp
+
+https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/blob/LE.UM.7.4.1.r1-17700-sa525m-tele/apps/samples/phone/network_scan_app/NetworkApp.cpp
+
+===================================================================
+
+cout:: Console Output
+
+ <<=====   Pfeils
+
+
+ endl:  end of line
+
+ A) Korrekt  :   Grammatik  // Lexikon  ==> Compiler // Übersetzer
+
+    --->   .OBJ  // .O
+
+ B) Maschinencode:   Build  // Linker
+
+    ---->  .EXE  // keine Endung
+
+=============================================================
+
+==> Klassen und Objekte
+
+==> C:  struct   ====> DATEN
+
+struct Person
+{
+    int age;             // int // size_t
+    char firstName[32];
+    char lastName[32];   // 
+    
+    size_t plz;
+    char wohnort[32];   // 
+};
+
+Datentyp  (int, double)
+
+Benutzer-definiert
+
+Funktionen: Die auf DATEN OPERIEREN.
+
+Funktionen:  Die Person zieht um
+
+changeAdress:  Name einer Funktion
+
+// ----------
+Es gibt KEINE MÖGLICHKEIT, die Struktur (Person) und die Funktion (changeAdress)
+in einem gemeinsamen Konstrukt hinzuschreiben.
+// ----------
+
+struct Person hans;   // Variable dieses Strukturtyps
+
+// Funktion, die eine Person als PARAMETER hat
+changeAdress (struct Person* person, size_t newPLZ, char* neuerWohnort);
+
+=========================================
+
+==============>  Strukturen und Funktionen ====> OO: Klasse
+
+                 Klasse: Vereint Funktionen und Daten in einem GEMEINSAMEN Konstrukt
+
+C:   NUR Strukturen und Funktionen // KEINE Klassen
+
+C++:  Klassen
+
+================================================
+
+Java, C#,  Python, 
+
+Wir schreibe ich eine Klasse in C++:
+
+In ZWEI Dateien.
+
+Uhrzeiten:   Stunden, Minuten, Sekunden
+
+"nächsteSekunde, ausgeben, vergleichen, auf Null setzen, ..."
+
