@@ -283,10 +283,7 @@ Auflösung von Konflikten (lokale Variable (Parameter) vs Instanz-Variable)
 
 Ist C-Programmierung.
 
-
-
 ====================================================
-
 
 https://wandbox.org/
 
@@ -303,3 +300,48 @@ Visual Studio:
 
 https://github.com/pelocpp/cpp_introduction/blob/master/Cpp_Introduction/Exercises/Exercises_BankAccount.md
 
+====================================================
+
+const:
+
+Sparsam:
+
+========> Hintergrund: 
+
+Vorteil:  Code_Optimierung
+
+=====================================================
+
+static in einer Klasse bei einer Variablen:
+
+Ist wie eine "globale Variable"
+
+Was ist der Vorteil:
+
+Gewisse Systematik:
+
+Name:  s_NextAccountNumber
+
+Sondern:  BankAccount::s_NextAccountNumber
+
+Über den Langnamen behält man den Überblick über "globale Variablen"
+
+==> Klassenvariable
+
+===============================================
+
+Banknummer:
+
+123456        ==> 
+
+"123456"
+
+int n = 123456;
+
+===============================================
+
+Pointer // Referenzen
+
+Parameterübergabe
+
+===============================================

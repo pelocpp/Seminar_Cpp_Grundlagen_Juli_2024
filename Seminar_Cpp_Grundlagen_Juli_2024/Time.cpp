@@ -13,12 +13,19 @@ void Time::setMilliseconds(int msecs)
 
 
 // constructors
-Time::Time()
-{
-    m_hours = 0;
-    m_minutes = 0;
-    m_seconds = 0;
-}
+//Time::Time()
+//{
+//    m_hours = 0;
+//    m_minutes = 0;
+//    m_seconds = 0;
+//}
+
+// ODER
+
+// Initialisierungs-Liste
+// Grund: Bei Vererbung wird die Basisklasse AUF DIESE WEISE vorbelegt.
+Time::Time() : m_hours (0), m_minutes(0), m_seconds(0)
+{}
 
 
 Time::Time(int hours, int minutes, int seconds)
