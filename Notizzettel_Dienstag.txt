@@ -77,6 +77,15 @@ https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/
 
 https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/blob/LE.UM.7.4.1.r1-17700-sa525m-tele/apps/samples/phone/network_scan_app/NetworkApp.cpp
 
+
+Gefunden:
+
+https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/blob/LE.UM.7.4.1.r1-17700-sa525m-tele/include/telux/tel/PhoneFactory.hpp
+
+https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/blob/LE.UM.7.4.1.r1-17700-sa525m-tele/simulation/libs/audio/AudioFactoryImpl.cpp
+
+
+
 ===================================================================
 
 cout:: Console Output
@@ -275,7 +284,22 @@ Auflösung von Konflikten (lokale Variable (Parameter) vs Instanz-Variable)
 Ist C-Programmierung.
 
 
-13:20
------
 
+====================================================
+
+
+https://wandbox.org/
+
+
+Visual Studio:
+
+== Projekt anlegen können
+
+== Klasse, Objekt
+
+== getter / setter
+
+== Methoden
+
+https://github.com/pelocpp/cpp_introduction/blob/master/Cpp_Introduction/Exercises/Exercises_BankAccount.md
 
