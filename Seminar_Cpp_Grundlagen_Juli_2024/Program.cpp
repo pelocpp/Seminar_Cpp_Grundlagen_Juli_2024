@@ -1,6 +1,9 @@
 #include <iostream>
 
-int main()  // main muss so sein.
+extern void main_time();  // Linker
+extern void test_mal_Zwei();
+
+int main_hello_world ()  // main muss so sein.
 {
     int a,  b, c;
 
@@ -12,4 +15,9 @@ int main()  // main muss so sein.
     // printf
 
     return 0;
+}
+
+int main()  // main muss so sein.
+{
+    test_mal_Zwei();
 }

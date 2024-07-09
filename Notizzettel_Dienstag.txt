@@ -152,3 +152,130 @@ Uhrzeiten:   Stunden, Minuten, Sekunden
 
 "nächsteSekunde, ausgeben, vergleichen, auf Null setzen, ..."
 
+====================================================
+
+Klasse:   Beschreibung von Daten und Funktionen (Methoden)
+
+Objekt:   "Variable einer Klasse" // Synonym:  Instanz
+
+Variablen einer Struktur // Variablen eines Objekts:
+
+Instanzvariablen // Membervariablen // (Objektvariable) 
+
+     member ==> m_    Konvention 
+
+Methode:    "Funktion"
+
+=======================================================
+
+Mittagessen:  12.30 bis ca. 13.15
+
+=======================================================
+
+Alternative:  Wandbox.org
+
+https://wandbox.org/
+
+Zum Ausprobieren ..................
+
+Oder auch:
+
+https://www.online-cpp.com/
+
+=======================================================
+
+Bemerkung:
+
+C ist in C++ enthalten ... KOMPLETT (99%).
+
+=======================================================
+
+Paradigma // Idiom:
+
+== Kapselung // Schutz der Daten 
+
+    now.m_hours = 999;    Das soll NICHT gehen
+
+== Ein Objekt soll / muss zu jedem Zeitpunkt seines Lebens
+
+   KORREKTE Daten enthalten.
+
+>> Zugriffsschutz:
+
+a) Instanzvariablen sollten private sein:
+
+   "Von außen" kein Zugriff möglich !!!
+
+b) Zugriff:   Über Methoden:
+
+   setter / getter
+
+
+   Diese MÜSSEN die Sinnhaftigkeit ihrer Parameter überprüfen !!!
+
+   Können den Status eines Objekts verändern / lesen
+
+   Während der Lebenszeit eines Objekts
+
+====================================================
+
+Ein Objekt bei seiner Erzeugung vorbelegen:
+
+== Spezielle Methoden:  Konstruktoren (sie "konstruieren" das Objekt)
+
+== Beim Entstehen eines Objekts !!!
+
+== ZWEI Unterschiede zu einer regulären Methode:
+
+   a) Name: Identisch mit dem Namen der Klasse
+   b) Rückgabetyp: KEINER (auch nicht void)
+
+
+
+WICHTIG !!!!!!!!!!
+
+Vorbelegen:
+
+Speicher dynamisch allokieren : NICHT IM KONSTRUKTOR
+
+Verbindungsaufbau:  NICHT IM KONSTRUKTOR
+
+     Eine Ausnahme werfen.
+
+    bool m_active; 
+    bool m_valid;   // false
+
+
+====================================================
+
+
+Der this-Zeiger
+
+this kann als Argument NUR Instanz-Variablen (Methoden) haben.
+
+Eine Anwendung:
+
+Auflösung von Konflikten (lokale Variable (Parameter) vs Instanz-Variable)
+
+
+    this->milliseconds = milliseconds;
+00007FF69E672524  mov         rax,qword ptr [this]  
+00007FF69E67252B  mov         ecx,dword ptr [milliseconds]  
+00007FF69E672531  mov         dword ptr [rax+0Ch],ecx  
+
+    milliseconds = msecs;
+00007FF79BE72524  mov         rax,qword ptr [this]  
+00007FF79BE7252B  mov         ecx,dword ptr [msecs]  
+00007FF79BE72531  mov         dword ptr [rax+0Ch],ecx  
+
+====================================================
+
+“prozedurale” Programmierung_
+
+Ist C-Programmierung.
+
+
+13:20
+-----
+
+
