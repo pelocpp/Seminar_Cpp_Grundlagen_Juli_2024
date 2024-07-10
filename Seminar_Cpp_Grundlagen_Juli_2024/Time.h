@@ -35,4 +35,7 @@ public:
     void reset();
     void increment();
     void print();
+
+    // Vergleich zweier Uhrzeiten
+    bool equals(const Time& other) const;
 };

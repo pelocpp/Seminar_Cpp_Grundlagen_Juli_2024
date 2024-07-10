@@ -1,3 +1,4 @@
+#include <iostream>
 
 #include "Time.h"
 
@@ -36,6 +37,15 @@ void main_time()
     now.print();
 
     pause.print();
+
+    // ============================
+
+    if (now.equals(pause)) {
+        std::cout << "sind gleich" << std::endl;
+    }
+    else {
+        std::cout << "sind nicht gleich" << std::endl;
+    }
 }
 
 

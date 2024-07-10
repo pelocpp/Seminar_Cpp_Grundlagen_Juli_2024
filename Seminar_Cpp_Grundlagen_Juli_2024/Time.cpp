@@ -104,3 +104,24 @@ void Time::increment()
 {
     // to be done
 }
+
+// bool Time::equals(Time other)
+
+bool Time::equals(const Time& other) const
+{
+    //other.m_hours++;
+    //m_hours++;
+
+    if (m_hours != other.m_hours) {
+        return false;
+    }
+    else if (m_minutes != other.m_minutes) {
+        return false;
+    }
+    else if (m_seconds != other.m_seconds) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}

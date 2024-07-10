@@ -345,3 +345,100 @@ Pointer // Referenzen
 Parameterübergabe
 
 ===============================================
+
+Zeiger  (Adresse) und Referenzen:
+----------------------
+
+"Nicht ganz einfach"
+
+===> Performanz // Vermeiden von Kopien
+
+C:
+
+Es gibt
+
+== Adresse einer Variablen
+
+== Adresse eines Speicherbereichs, der zur Laufzeit reserviert wird.
+
+//  0x1024: Ist eine Adresse - Assembler / Maschinencode
+
+//  0x1024: In C: ist mit einem Datentyp verbunden.
+
+Beispiel: Mit int:
+
+Für eine int-Variable auf meinem aktuellen Rechner 4 Bytes
+Speicher notwendig sind:
+
+0x1024
+0x1025
+0x1026
+0x1027
+
+// ===============================================
+
+    *ip = 456; 
+00007FF75E1666ED  mov         rax,qword ptr [ip]  
+00007FF75E1666F1  mov         dword ptr [rax],1C8h // 456 
+                // indirekter Variablenzugriff
+
+
+    n = 457;    // direkter Variablenzugriff
+00007FF75E1666F7  mov         dword ptr [n],1C9h  
+
+1 MOV-Befehl versus 2-MOV Befehlen
+
+// ===============================================
+
+Daten
+
+Unterprogramme:
+
+== Ein Unterprogramm soll die Daten verändern können.
+
+// ===============================================
+
+C:     Datentyp Adresse / Pointer
+
+C++:   Datentyp Referenz
+
+Brauche ich in C++ dann Pointer überhaupt noch ???
+
+Yes =======> new / delete
+
+// ==========================================
+
+ri ist eine Referenzvariable
+
+ri ist ein ALIAS für n  (zum Beispiel)
+
+=================================================
+
+Adresse:   ...84
+
+Nächste Adresswert:
+
+4 Bytes ==> ... 88
+
+// ===============================================
+
+C:     Datentyp Adresse / Pointer
+
+void malZweiEx(int* const ip)    // Parameter // Stellvertreter
+{
+    int tmp;
+    tmp = *ip; 
+    tmp = 2 * tmp;
+    *ip = tmp;
+    // oder kürzer
+    *ip = 2 * (*ip);
+}
+
+C++:   Datentyp Referenz
+
+void malZweiExEx(int& x)
+{
+    x = 2 * x;
+}
+
+// NICHT MIT EINER KOPIE, sondern DEM ORIGINAL

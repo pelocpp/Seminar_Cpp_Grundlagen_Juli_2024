@@ -2,6 +2,7 @@
 
 extern void main_time();  // Linker
 extern void test_mal_Zwei();
+extern void test_pointer_reference();
 
 int main_hello_world ()  // main muss so sein.
 {
@@ -20,5 +21,5 @@ int main_hello_world ()  // main muss so sein.
 
 int main()  // main muss so sein.
 {
-    test_mal_Zwei();
+    main_time();
 }
