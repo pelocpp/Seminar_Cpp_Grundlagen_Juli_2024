@@ -1,0 +1,21 @@
+==================================================
+
+Guten Morgen
+
+C++ Einführung
+--------------
+
+Donnerstag
+
+Peter Loos
+
+peter.loos@gmx.de
+
+==================================================
+
+Inhalt:
+
+- Singleton
+
+- Factory
+

@@ -4,7 +4,7 @@
 
 void main_time()
 {
-    int  n;
+    // int  n;
 
     Time now;
 

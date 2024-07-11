@@ -139,6 +139,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Notizzettel_Dienstag.txt" />
+    <Text Include="..\Notizzettel_Donnerstag.txt" />
+    <Text Include="..\Notizzettel_Qualcomm.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BankAccount.h" />
