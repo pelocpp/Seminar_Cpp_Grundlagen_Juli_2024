@@ -8,6 +8,18 @@ C++ Einführung
 Peter Loos
 
 peter.loos@gmx.de
+-----------------
+
+==================================================
+
+2 Tools:
+
+== Visual Studio
+== Github.com
+
+https://github.com/pelocpp
+
+https://github.com/pelocpp/cpp_introduction
 
 ==================================================
 
