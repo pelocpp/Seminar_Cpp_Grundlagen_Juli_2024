@@ -42,11 +42,26 @@
     <ClCompile Include="Zeiger_Und_Referenzen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DependencyInjection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Auto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared_Ptr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Notizzettel_Dienstag.txt" />
     <Text Include="..\Notizzettel_Donnerstag.txt" />
-    <Text Include="..\Notizzettel_Qualcomm.txt" />
+    <Text Include="..\Notizzettel_Links_Qualcomm.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">

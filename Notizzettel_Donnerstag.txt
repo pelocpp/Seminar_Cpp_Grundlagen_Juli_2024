@@ -15,7 +15,345 @@ peter.loos@gmx.de
 
 Inhalt:
 
-- Singleton
+== Singleton
 
-- Factory
+== Factory
+
+== Catch2 // Testen
+
+== Vorgehensweisen des Beispiel Quellcodes
+
+== Schnittstellenkonzept
+
+== Dependency Injection
+
+== auto
+
+== std::shared_ptr
+
+== Lambda-Funktionen
+
+== Frage: Callback-Zeiger wieder abbauen / freigeben
+
+   ===> Lambda .... ===> geschachtelt ...
+
+==================================================
+
+Singleton
+
+https://github.com/pelocpp/cpp_design_patterns/blob/master/Patterns/Singleton/Resources/Readme.md
+
+
+getInstance ():   // gib mir ein Objekt
+
+  a) Den Typ verstecken möchte.
+
+  b) Nur EIN EINZIGES Objekt von dieser Klasse überhaupt hat: Singleton.
+
+  c) Globales Objekt: Ginge ... Geschmäckle ...
+
+
+  Details: Ist dieses EINE Objekt global verfügber
+  
+  Ist es dynamisch verfügbar.  // Speicherplatz
+
+==================================================
+
+Fabrik  // Factory
+
+https://github.com/pelocpp/cpp_design_patterns/blob/master/Patterns/SimpleFactory/Resources/Readme.md
+
+
+== Möchte ein Objekt haben
+
+== Klasse dieses Objekts wird von jemand anders realisiert
+
+   Time now;
+
+   Die Realisierung dauert an .....
+
+== Andere Möglichkeit:
+
+   "Möchte ein Objekt haben"
+
+   "Brauche ein paar Methoden mit einer gewissen Funktionalität"
+
+   Spezifiziere diese Methoden mal ...
+   Wie ???
+
+   Eine Realisierung dieser Methoden bereitstellen:
+   Wie ???
+
+   In einer Klasse mit Vaterklasse
+
+   Die SW wird auf diese Weise FLEXIBLER !!!
+
+   Der Client bekommt dann nur die Methoden,
+   die er in dieser / einer Schnittstelle spezifiziert hat.
+
+------------------------------------------------------------
+
+   Spezifiziere diese Methoden mal ...
+   Wie ???
+   "Schnittstelle"
+
+   Schnittstellenklasse
+
+   Häufig:  Nomenklatur: Namen von Schnittstellenklassen fangen mit 'I' an
+
+    class IShape
+    {
+    public:
+        virtual ~IShape() {}         // Detail
+
+        virtual void draw() = 0;                // Methode 
+        
+        // virtual void eraseBackground() = 0;     // Methode 
+
+        //private:
+        //int m_data;   // No-go
+    };
+
+    // Schnittstelle  : Keyword interface: Java, C#,  Dart, .............
+    interface IShape
+    {
+    public:
+        virtual ~IShape() {}         // Detail
+
+        abstract void draw();        // abstrakte Methode: Keine Realisierung 
+    };
+
+    Unterschiede: virtual,  = 0 <=========
+
+    IShape ist datentechnisch eine Klasse
+
+    Per Konzeption handelt es sich um einen Vertrag // Kontrakt :
+
+    Was steht da drin:
+
+    Das "jemand" eine Methode "void draw()" realisieren muss.
+
+    "= 0";   // KEINE REALISIERUNG
+
+
+------------------------------------------------------------
+
+
+A) Schnittstellen
+-----------------
+
+Variante einer Schnittstelle:
+
+B) Abstrakte Basisklasse
+------------------------
+
+Hat die Funktionalität einer Schnittstelle mit Ergänzungen:
+
+i)  Daten (für alle Clients relevant sein)
+
+ii) Teilweise Realisierung von Methoden, die für alle Clients relevant sein sollten / könnten.
+
+
+------------------------------------------------------------
+
+
+
+   Eine Realisierung dieser Methoden bereitstellen:
+   Wie ???
+
+
+    Via Vererbung:
+
+    Eine Klasse "erbt" Methoden einer Vaterklasse.
+
+    Was erbe ich in diesem Beispiel:
+
+    "Nichts"   :-)
+
+    Eine Aufgabe // eine Pflicht, die in einem einen Vertrag // Kontrakt beschrieben ist.
+
+    'override' markiert Methoden, die den Vertrag erfüllen sollen.
+
+    class Rectangle : public IShape   // !!!!!!!!!!!!!!!!!!!!!!!
+    {
+    public:
+        Rectangle() {}
+
+        void draw() override
+        {
+            std::cout << "> Rectangle::draw()" << std::endl;
+        }
+    };
+
+
+    Detail:  Die Realisierung der Methode steht in der Klasse drin:
+
+    "Geht auch ... wenn's schnell gehen muss"
+
+
+'Rectangle::drawMe':
+
+method with override specifier 'override' did not override any base class methods
+
+=========================================================
+
+Bemerkung:
+
+Kann von einer Schnittstellenklasse KEIN Objekt anlegen!
+
+Why ???
+
+i) Eine Schnittstellenklasse ist abstrakt
+
+ii) Eine Schnittstellenklasse ist unvollständig (per Konzeption)
+
+=========================================================
+
+Das "große Feature" des Schnittstellenkonzepts:
+
+Entkopplung von Client und Service
+
+An Stelle von realen Klassen arbeitet man mit
+
+"Schnittstellenzeigern"
+
+==================================================
+
+"A programmer knows what he does"  :-)
+
+==================================================
+
+ Dependency Inversion:
+
+ Was ist das ???
+
+ In einem Satz:
+
+ Miteinander gekoppelte / abhängige Klassen entkoppeln
+
+ Wie?
+
+ Durch eine Schnittstelle: Vertrag.
+
+ Beide (vormals gekoppelte / abhängige Klassen) hängen
+ nur nur von dieser Schnitttelle ab.
+
+ ==================================================
+
+ Blick in die Quellen:
+
+class DialCallback : public IMakeCallCallback {
+public:
+    void makeCallResponse(ErrorCode error, std::shared_ptr<ICall> call) {
+
+
+class IMakeCallCallback
+{
+    virtual void makeCallResponse(ErrorCode error, std::shared_ptr<ICall> call) = 0;
+}
+
+class DialCallback : public IMakeCallCallback {
+public:
+    virtual void makeCallResponse(ErrorCode error, std::shared_ptr<ICall> call) override {
+
+======================================================================
+
+Beobachtung:
+
+std::shared_ptr<ICall> dialedCall = nullptr;
+
+// ##### 5.1 Implement IMakeCallCallback interface to receive response for the dial request
+// - optional
+class DialCallback : public IMakeCallCallback {
+public:
+    void makeCallResponse(ErrorCode error, std::shared_ptr<ICall> call) {
+       std::cout << "DialCallback::makeCallResponse" << std::endl;
+       std::cout << "makeCallResponse ErrorCode: " << int(error) << std::endl;
+       if(call) {
+          std::cout << "makeCallResponse RemotePartyNumber : " << call->getRemotePartyNumber()
+                    << std::endl;
+          std::cout << "makeCallResponse getCallIndex : " << call->getCallIndex() << std::endl;
+          dialedCall = call;
+       }
+    }
+};
+
+
+Zeiger wird außerhalb der Methode aufgerufen:
+
+Geht das ?????????
+
+Verliert der Zeiger seine Gültigkeit ??
+
+NEIN: Weil es ein SHARED-PTR ist.
+
+dialedCall = call
+
+==========================================================
+
+auto &phoneFactory = PhoneFactory::getInstance();
+
+PhoneFactory& phoneFactory = PhoneFactory::getInstance();
+
+PhoneFactory  &  phoneFactory = PhoneFactory::getInstance();
+
+
+==========================================================
+
+cpp_concurrency
+
+Multi-Threading // Parallel-Programmierung
+
+Collection of C++ examples to illustrate Concurrency Features
+
+
+
+std::promise : Baukasten der C++ Multi-Threading Bibliothek
+
+Wozu eigentlich dieses Multi-Threading  ???????????????
+
+==> Funktion:  account.deposit(50);  // läuft die synchron 
+
+                               // LANGE LAUFEN // Warten auf etwas // asynchron
+
+std::promise: Hilfsmittel, um "zukünftige" Ergebnisse einzuholen 
+
+std::future:  Gehört zum std::Promise 
+
+============================================================
+
+
+std::shared_ptr<ICallManager>  callManager = phoneFactory.getCallManager
+
+// identisch zu
+
+auto                           callManager = phoneFactory.getCallManager
+
+(
+   // Funktion ohne Namen // anonym // Lambda-Objekt
+   [&] (telux::common::ServiceStatus status) { cbProm.set_value(status); }
+            
+);
+
+==============================================================
+
+auto:  Ist eine abkürzende Schreibweise
+
+==============================================================
+
+std::shared_ptr
+
+release ();
+
+How to release a shared pointer:
+
+
+// 99%
+dialedCall = nullptr;
+
+==============================================================
+
+auto:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/Auto/Auto.md
 
