@@ -640,6 +640,13 @@ https://github.com/pelocpp/cpp_design_patterns/blob/master/Patterns/Observer/Res
 
 // =================================================================
 
+new und delete kann man selbst implementieren:
+
+https://www.geeksforgeeks.org/overloading-new-delete-operator-c/
+
+// =================================================================
+
+
 Zu Callbacks:
 
 Intercepting Filter Pattern
