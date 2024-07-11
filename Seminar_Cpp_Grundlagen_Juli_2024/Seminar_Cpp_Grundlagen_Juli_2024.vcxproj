@@ -133,6 +133,7 @@
     <ClCompile Include="BankAccount_Main.cpp" />
     <ClCompile Include="DependencyInjection.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="Lambda.cpp" />
     <ClCompile Include="Main_Time.cpp" />
     <ClCompile Include="Namespaces.cpp" />
     <ClCompile Include="Parameter.cpp" />
@@ -140,7 +141,9 @@
     <ClCompile Include="Shared_Ptr.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="UniquePtr.cpp" />
     <ClCompile Include="VieleZeichen.cpp" />
+    <ClCompile Include="WeakPtr.cpp" />
     <ClCompile Include="Zeiger_Und_Referenzen.cpp" />
   </ItemGroup>
   <ItemGroup>

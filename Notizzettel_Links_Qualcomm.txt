@@ -16,3 +16,14 @@ https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/
 
 https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/snaptel-sdk/-/blob/LE.UM.7.4.1.r1-17700-sa525m-tele/simulation/libs/audio/AudioFactoryImpl.cpp
 
+Auch gefunden:
+
+TelClient.hpp
+
+TelClient.cpp
+
+updateMsdCommandCallback_
+
+std::bind
+
+

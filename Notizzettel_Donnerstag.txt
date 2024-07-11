@@ -37,6 +37,10 @@ Inhalt:
 
    ===> Lambda .... ===> geschachtelt ...
 
+
+== std::bind
+
+
 ==================================================
 
 Singleton
@@ -357,3 +361,304 @@ auto:
 
 https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/Auto/Auto.md
 
+==============================================================
+
+Lamdba-Funktionen:
+------------------
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/Lambda/Lambda.md
+
+
+Sind von anderen Sprachen populär gemacht worden ( C#, Java, JavaScript, ...)
+
+..... und damit in C++ aufgenommen worden :-)
+
+Beispiel:
+
+std::vector<int> vec{ 5, 6, 4, 1, 3, 2, 7, 8 };
+
+Ist quasi ein Array
+
+int numbers[10];
+
+(( C-Array:  FIXED-Size         ))
+(( STL:      VARIABLE-Sized     ))
+
+Beispiel:   std::sort
+
+C/C++-Funktion:   
+
+Der als Parameter eine ANDERE Funktion übergeben wird.    // Callback-Funktion
+
+A) ERSTE VARIANTE:  C-Funktion
+
+std::sort(
+    std::begin(vec), 
+    std::end(vec),
+    compare
+);
+
+
+bool compare(int n1, int n2) {    // reg. C-Funktion  
+        return n1 < n2;
+}
+
+B) ZWEITE VARIANTE:  "Aufrufbares Objekt" // Callable // Functor
+
+
+   Klasse // Objekt das dem Aufruf-Operator operator() realisiert.
+
+
+C) DRITTE  VARIANTE:  Lambda:   Methoden OHNE Namen // anonym 
+
+Weil Lambdas == "Aufrufbares Objekt", deren Klassen und Objekte
+       der Compiler erzeugt:
+
+       Klasse: Übersetzungszeit
+       Objekt: Aufgerufen zur Laufzeit.
+
+
+SYNTAX: ?????????????????????????
+
+BEMERKUNG:   
+
+Typischerweise: Lambda-Funktion
+
+EXAKT: FALSCH  // Lambda-Objekt
+
+================================================================
+
+Komplexität:
+
+Lambda
+
+Klausel
+
+Shared-Pointer
+
+
+
+ABER:
+
+Es gibt Sonne am Horizont:
+
+ICallback
+
+
+ICallback*
+
+sondern
+
+std::shared_ptr<ICallback>
+
+// ===============================================================
+
+== std::shared_ptr
+
+// ===============================================================
+
+Smart Pointer 
+
+Dynamische Speicherverwaltung:
+
+new
+===> Reserviert Speicher : Halde / Haufen / Heap
+
+Freigabe:
+===> delete : Hebt die Reserierung auf.
+
+Idee:
+
+A) Objekt-Orientierung:
+
+Konstruktoren:
+Destruktoren:
+
+Aufruf ist DETERMINISTISCH : 
+
+Erzeugung: Beim Erzeugen
+Destruktor:  Wenn das Objekt aus dem Scope fällt ("wenn die Funktion verlassen wird")
+
+B) Zeiger-Variable:
+
+int* ip;
+
+ip1 = new int;       // eine int-Variable
+ip2 = new int[100];  // ein Feld von int-Variablen
+
+delete   ip1;  // scalar-delete
+delete[] ip2;  // array-delete
+
+C) Wem gehört der Zeiger // Wer ist der Besitzer der Zeigers ???
+
+   Ownership  ===> delete
+
+D) Idee:  Das new // den Zeiger in einer Hüllen-Klasse ablegen
+
+          Den Zeiger einer Hüllen-Klasse übergeben.
+
+Konstruktor:  new
+Destruktor:   delete
+
+E) auto_ptr:  deprecated
+
+F) std::unique_ptr
+   std::shared_ptr
+
+   std::weak_ptr
+
+G) Strategien:
+
+Ownership std::unique_ptr:  EXKLUSIVE Besitz.
+
+    Zu EINEM Zeitpunkt gibt es EINEN Besitzer.
+
+    // Dieses Hüllen-Objekt ist NICHT kopierbar.
+
+
+Ownership std::shared_ptr:  GETEILTE Besitz / Mehrere Besitzer.
+
+H) Beispiel:
+
+Callback-Objekte:
+
+Client damit "später" Informationen erhalten kann:
+
+a) Anwendung / Client  ==> Gibt das Hüllenobjekt frei
+b) Der Verwender / das Zielobjekt ==> Gibt das Hüllenobjekt frei
+
+Clou: Wenn ALLE Besitzer das Hüllenobjekt freigegeben haben:  delete
+
+// =========================================================
+
+std::unique_ptr:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/UniquePtr/UniquePtr.md
+
+// =========================================================
+
+Verschiebe-Semantik:
+
+Laufzeit-Verbesserung: C++ 11 
+
+// =========================================================
+
+Nebeneffekt:
+
+Laufzeit Laufzeit ...
+
+Optimierungen:
+
+RVO  ==> Return Value Optimization
+
+NRVO  ==> Return Named Value Optimization
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/CopyMoveElision/CopyMoveElision.md
+
+
+// =========================================================
+
+std::shared:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/SharedPtr/SharedPtr.md
+
+
+// =========================================================
+
+
+A) Frage:
+
+Das Abmelden von Callbacks / Listenern:
+
+Ziel:
+
+attach (...);  // Lambda // shared-Ptr
+
+detach ();
+
+    static void test_frage()
+    {
+        std::shared_ptr<int> ptr{ new int{ 123 } };
+        std::shared_ptr<int> ptr2 { ptr };
+
+        ptr = nullptr;
+    }
+
+
+
+B) Scharfes Schwert:
+------------------
+
+
+std::get_deleter
+
+template< class Deleter, class T >
+Deleter* get_deleter( const std::shared_ptr<T>& p ) noexcept;
+
+Einklinken // Dazwischen schalten:
+
+
+Da kann man dann den Fall des Zählers von 1 auf 0 beobachten.
+
+
+
+C) RAII Idiom:
+---------------
+
+Man kann so einen Shared-Pointer auch selbst schreiben:
+
+https://github.com/pelocpp/cpp_design_patterns/blob/master/Patterns/RAII_Idiom/Resources/Readme.md
+
+Verwaltet Resourcen:
+
+Konstruktor
+Destruktor
+
+===>
+
+Wann immer ein Callback / kritisches Argument weitergereicht wird:
+
+Hüllenobjekt weitergereicht.
+
+// =================================================================
+
+Zu Callbacks:
+
+Observer:
+
+https://github.com/pelocpp/cpp_design_patterns/blob/master/Patterns/Observer/Resources/Readme.md
+
+
+    class ISubject {
+    public:
+        virtual ~ISubject() {}
+
+        virtual void attach(IObserver* observer) = 0;
+        virtual void detach(IObserver* observer) = 0;
+    };
+
+
+// =================================================================
+
+Zu Callbacks:
+
+Intercepting Filter Pattern
+
+https://github.com/pelocpp/cpp_design_patterns/blob/master/Patterns/InterceptingFilterPattern/Resources/Readme.md
+
+Das Intercepting Filter Pattern ist ein Entwurfsmuster
+das sich der Vor- und Nachbearbeitung einer Anforderung („Request”, typischerweise ein Methodenaufruf) zuwendet.
+
+Die Vor- und Nachbearbeitung definiert Aktionen,
+die vor und nach der Kernverarbeitung der Anforderung ausgeführt werden.
+
+
+// =================================================================
+
+Testen:
+
+C++  Catch2
+
+https://github.com/catchorg/Catch2
+
+// =================================================================

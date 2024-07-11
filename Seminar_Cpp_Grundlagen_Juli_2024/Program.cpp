@@ -3,7 +3,10 @@
 extern void main_time();  // Linker
 extern void test_mal_Zwei();
 extern void test_pointer_reference();
+extern void main_lambdas();
+extern void main_unique_ptr();
 
+extern void main_shared_ptr();
 extern void main_shared_ptr();
 
 int main_hello_world ()  // main muss so sein.
